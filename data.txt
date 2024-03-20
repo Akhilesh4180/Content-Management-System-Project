@@ -1,0 +1,62 @@
+ <div class="form-group">
+                                <label for="CategoryTitle"> <span class="FieldInfo"> Chose Category </span></label>
+                                <select class="form-control" id="CategoryTitle" name="Category">
+                                   <?php
+                                // Fetching all the categories  from category table
+                                global $ConnectingDB;
+                                $sql = "SELECT id,title FROM category";
+                                $stmt = $ConnectingDB->query($sql);
+                                while ($DataRows = $stmt->fetch()) {
+                                    $Id = $DataRows["id"];
+                                    $CategoryName = $DataRows["title"];   
+                                
+                                ?>
+                                <option > <?php echo $CategoryName; ?></option>
+                            <?php } ?>
+                            </select>                                    
+                            </div>
+
+
+
+                            section class="container py-2 mb-4">
+        <div class="row">
+            <div class="offset-lg-1 col-lg-10" style="min-height:500px";>
+            <!-- Calling out the  error and success function in the sessions.php file -->
+            <?php
+            echo ErrorMessage();
+            echo SuccessMessage();
+            ?>
+                <form class="" action="Categories.php" method="post" enctype="multipart/form-data">
+                    <div class="card bg-secondary text-light mb-3 ">
+                        <div class="card-header">
+                            <h1>Add New Category</h1>
+                        </div>
+                        <div class="card-body bg-dark">
+                            <div class="form-group">
+                                <label for="title"> <span class="FieldInfo"> Category:Title: </span></label>
+                                <input class="form-control" type="text" name="CategoryTitle" placeholder="Type title here"
+                                    id="title" value="">
+                            </div>
+                            
+                            
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
+                                    <a href="Dashboard.php" class="btn btn-warning btn-block"><i
+                                            class="fas fa-arrow-left"></i>Back To Dashboard</a>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <button type="submit" name="Submit" class="btn btn-success btn-block">
+                                        <i class="fas fa-check"></i>Publish
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!--  END MAIN AREA -->
